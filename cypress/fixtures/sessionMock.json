@@ -1,0 +1,12 @@
+{
+  "cookies": [
+    {
+      "name": "SSO_SESSION",
+      "value": "mocked-session-token",
+      "domain": "sso-test.infra.ftgroup",
+      "path": "/",
+      "httpOnly": true,
+      "secure": true
+    }
+  ]
+}

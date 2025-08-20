@@ -18,14 +18,12 @@ describe('Delivery Prerequisites Check Workflow', () => {
     // 1. Première liste déroulante
 cy.xpath(
   '/html/body/app-root/app-order-details/div/div[5]/app-order-qualification/div/div[2]/div/div[2]/app-activity-section/div[3]/div/form/div[1]/div[1]/div/app-prerequisites-check-common-activity/div/form/div[1]/div/div[1]/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span',
-  { timeout: 10000 }
-)
+  { timeout: 10000 })
   .should('be.visible')
-  .scrollIntoView() // Ensure the dropdown trigger is in view
   .click({ force: true });
 
 // Wait for the dropdown panel to be visible and not animating
-cy.get('div#mat-select-2-panel.mat-select-panel', { timeout: 15000 })
+cy.get('[formControlName="salesDoc"]', { timeout: 15000 })
   .should('be.visible')
   .should('not.have.class', 'ng-animating');
 
@@ -44,7 +42,7 @@ cy.xpath('/html/body/div[2]/div[2]/div/div/div/mat-option[1]/span', { timeout: 1
       .click({ force: true });
     
     // 2. Attendre que le panel d’options apparaisse dans le DOM
-    cy.get('div.mat-select-panel', { timeout: 10000 })
+    cy.get('[formControlName="preSalesDocValueWorkable"]', { timeout: 15000 })
     .should('be.visible')
     .should('not.have.class', 'ng-animating');
     
@@ -64,7 +62,7 @@ cy.xpath(
   .click({ force: true }); // Click to open the dropdown
 
 // Wait for the dropdown panel to appear and be visible
-cy.get('div.mat-select-panel', { timeout: 10000 })
+cy.get('[formControlName="pmActionRequired"]', { timeout: 10000 })
   .should('exist')
   .should('be.visible'); // Ensure the panel is visible
 

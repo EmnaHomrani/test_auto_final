@@ -10,7 +10,7 @@ describe('FrontDeskdisconnectionmanagement Workflow', () => {
         .should('be.visible')
         .click();
     
-      // Cliquer sur "Front Desk disconnection management"
+      // Cliquer sur "Project Manager disconnection management"
       cy.contains('span', 'Project Manager disconnection management', { timeout: 10000 })
         .should('be.visible')
         .click();

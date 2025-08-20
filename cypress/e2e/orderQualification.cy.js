@@ -4,35 +4,58 @@ describe('Order Qualification Workflow', () => {
     });
   
     it('Passe à Order Qualification', () => {
-      proceedToOrderQualification();
+      cy.xpath(
+        '/html/body/app-root/app-order-details/div/div[5]/app-order-qualification/div/div[2]/div/div[2]/app-activity-section/div[2]/table/tbody/tr[4]/td[2]',
+        { timeout: 10000 }
+      )
+        .should('contain.text', 'Order Acknowledgement')
+        .should('be.visible')
+        .click();
+  
+      cy.wait(500);
+  
+     // 2. Deuxième liste déroulante
+    cy.xpath(
+      '/html/body/app-root/app-order-details/div/div[5]/app-order-qualification/div/div[2]/div/div[2]/app-activity-section/div[3]/div/form/div[1]/div[1]/div/app-order-acknowledgement-activity/div/form/div/div/div/div/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span',
+      { timeout: 10000 }
+    )
+      .should('be.visible')
+      .click({ force: true });
+    
+    // 2. Attendre que le panel d’options apparaisse dans le DOM
+    cy.get('[formcontrolname="orderAcknowledgementSent"]', { timeout: 15000 })
+    .should('be.visible')
+    .should('not.have.class', 'ng-animating');
+    
+    // 3. Cliquer sur l’option "Yes" en ciblant le span à l’intérieur du panel
+    cy.xpath('/html/body/div[2]/div[2]/div/div/div/mat-option[1]/span', { timeout: 15000 })
+  .contains('Yes') // Verify the text is "Yes"
+  .should('be.visible')
+  .click({ force: true });
+  
+  
+      // 5. Liste déroulante "Statut"
+      cy.xpath(
+        '/html/body/app-root/app-order-details/div/div[5]/app-order-qualification/div/div[2]/div/div[2]/app-activity-section/div[3]/div/form/div[1]/div[2]/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'
+      )
+        .should('be.visible')
+        .click({ force: true });
+  
+      cy.get('.mat-select-panel', { timeout: 10000 })
+        .should('exist')
+        .should('not.have.class', 'ng-animating');
+  
+      cy.get('.mat-option-text')
+        .contains('Completed')
+        .scrollIntoView()
+        .click({ force: true });
+  
+      // 6. Cliquer sur "Save"
+      cy.contains('button', 'Save')
+        .should('be.visible')
+        .should('not.be.disabled')
+        .click();
+  
+      cy.wait(500);
     });
-  
-    // Fonction pour passer à Order Qualification
-    function proceedToOrderQualification() {
-      cy.intercept('GET', '**/app/activity**').as('getNextActivity');
-      cy.wait('@getNextActivity', { timeout: 15000, failOnStatusCode: false }).then((interception) => {
-        if (interception && interception.response && interception.response.statusCode === 200) {
-          cy.log('Requête suivante terminée :', interception.response.statusCode);
-        } else {
-          cy.log('Aucune requête activité supplémentaire ou requête échouée, poursuite');
-        }
-  
-        cy.get('span[placement="bottom"][tooltipclass="otb-tooltip"]')
-          .contains('Order Qualification')
-          .should('exist', { timeout: 15000 })
-          .should('be.visible', { timeout: 15000 })
-          .scrollIntoView()
-          .click({ force: true })
-          .then(() => {
-            cy.log('Clic sur Order Qualification');
-          });
-  
-        cy.get('.activity-details', { timeout: 10000 })
-          .should('be.visible')
-          .should('contain', 'Order Qualification')
-          .then(() => {
-            cy.log('Activité Order Qualification visible');
-          });
-      });
-    }
   });

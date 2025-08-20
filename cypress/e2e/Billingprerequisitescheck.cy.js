@@ -1,9 +1,9 @@
-describe('Order Qualification Workflow', () => {
+describe('Billingprerequisitescheck Workflow', () => {
     before(() => {
       cy.loginAndSearch();
     });
   
-    it('Passe à Order Qualification', () => {
+    it('Passe à Billingprerequisitescheck', () => {
       cy.xpath(
         '/html/body/app-root/app-order-details/div/div[5]/app-order-qualification/div/div[2]/div/div[2]/app-activity-section/div[2]/table/tbody/tr[5]/td[2]/span',
         { timeout: 10000 }

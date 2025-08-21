@@ -15,7 +15,7 @@ describe('Delivery Prerequisites Check Workflow', () => {
 
     cy.wait(500);
 
-    function selectFirstOption(formControlName) {
+    	    function selectFirstOption(formControlName) {
       cy.get(`[formcontrolname="${formControlName}"]`).click({ force: true })
       cy.get('.cdk-overlay-container mat-option')
         .first()
@@ -23,13 +23,11 @@ describe('Delivery Prerequisites Check Workflow', () => {
     }
     
     // Utilisation :
-    selectFirstOption('salesDoc')
+    
     selectFirstOption('preSalesDoc')
     selectFirstOption('preSalesDocValueWorkable')
     selectFirstOption('launchInProdRequired')
-    
-    
-
+    selectFirstOption('salesDoc')
     // 5. Liste déroulante "Statut"
     cy.xpath(
       '/html/body/app-root/app-order-details/div/div[5]/app-order-qualification/div/div[2]/div/div[2]/app-activity-section/div[3]/div/form/div[1]/div[2]/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'

@@ -5,10 +5,11 @@ describe('Billing finalization Workflow', () => {
   
     it('Passe à Billing finalization', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+      cy.get('#headingLD-0328', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
+
     
       // Cliquer sur "Billing finalization"
       cy.contains('span', 'Billing finalization', { timeout: 10000 })

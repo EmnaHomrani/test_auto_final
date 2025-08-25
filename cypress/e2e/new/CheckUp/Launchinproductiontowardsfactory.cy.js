@@ -5,10 +5,10 @@ describe('Launch in production towards factory Workflow', () => {
   
     it('Passe à Launch in production towards factory', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+       cy.get('#headingLD-0328', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
     
       // Cliquer sur "Front Desk disconnection management"
       cy.contains('span', 'Launch in production towards factory', { timeout: 10000 })

@@ -1,39 +1,22 @@
-describe('Send the Service Completion Notice Workflow', () => {
+describe('Contract / service creation Workflow', () => {
     before(() => {
       cy.loginAndSearch();
     });
   
-    it('Passe à Send the Service Completion Notice', () => {
+    it('Passe à Contract / service creation', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+      cy.get('#headingLD-0328', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
     
-      // Cliquer sur "Send the Service Completion Notice"
-      cy.contains('span', 'Send the Service Completion Notice', { timeout: 10000 })
+      // Cliquer sur "Front Desk disconnection management"
+      cy.contains('span', 'Contract / service creation', { timeout: 10000 })
         .should('be.visible')
         .click();
     
       cy.wait(500);
-
-      // 1. Ouvrir le calendrier
-cy.get('p-calendar#serviceDeliveryDate')
-.find('.p-datepicker-trigger')
-.should('be.visible')
-.click();
-
-// 2. Attendre que le calendrier soit stable
-cy.get('.p-datepicker')
-.should('be.visible')
-.should('not.have.class', 'ng-animating');
-
-// 3. Sélectionner la bonne cellule de date (ex: 24)
-cy.get('.p-datepicker td')
-.contains(/^24$/) // Regex pour cibler exactement "24"
-.should('have.length', 1) // Vérifie qu’il n’y a qu’un seul match
-.click();
-
+    
   // 5. Liste déroulante "Statut"
 cy.xpath(
     '/html/body/app-root/app-order-details/div/div[6]/app-offers-section/ngb-accordion/div[1]/div[2]/div/div/app-activity-section/div[3]/div/form/div[1]/div[2]/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'

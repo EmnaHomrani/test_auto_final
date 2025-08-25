@@ -5,11 +5,11 @@ describe('Ordering & Provisioning Workflow', () => {
   
     it('Passe à Ordering & Provisioning', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
-    
+      cy.get('#headingLD-0326', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
+
       // Cliquer sur "Front Desk disconnection management"
       cy.contains('span', 'Ordering & Provisioning', { timeout: 10000 })
         .should('be.visible')
@@ -19,7 +19,7 @@ describe('Ordering & Provisioning Workflow', () => {
     
   // 5. Liste déroulante "Statut"
 cy.xpath(
-    '/html/body/app-root/app-order-details/div/div[6]/app-offers-section/ngb-accordion/div[1]/div[2]/div/div/app-activity-section/div[3]/div/form/div[1]/div[2]/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'
+    '/html/body/app-root/app-order-details/div/div[6]/app-offers-section/ngb-accordion/div[2]/div[2]/div/div/app-activity-section/div[3]/div/form/div[1]/div[2]/div/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span'
   )
     .should('be.visible')
     .click({ force: true });
@@ -36,9 +36,10 @@ cy.xpath(
   
   // 6. Cliquer sur "Save"
   cy.contains('button', 'Save')
-    .should('be.visible')
-    .should('not.be.disabled')
-    .click();
+  .scrollIntoView()
+  .should('be.visible')
+  .should('not.be.disabled')
+  .click({ force: true });
 
   cy.wait(500);
     });

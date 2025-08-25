@@ -1,32 +1,21 @@
-describe('Internal tests Workflow', () => {
+describe('MARINE update Workflow', () => {
     before(() => {
       cy.loginAndSearch();
     });
   
-    it('Passe à Internal tests', () => {
+    it('Passe à MARINE update', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+      cy.get('#headingLD-0328', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
     
-      // Cliquer sur "Front Desk disconnection management"
-      cy.contains('span', 'Internal tests', { timeout: 10000 })
+      // Cliquer sur "MARINE update"
+      cy.contains('span', 'MARINE update', { timeout: 10000 })
         .should('be.visible')
         .click();
     
       cy.wait(500);
-
-    	    function selectFirstOption(formControlName) {
-      cy.get(`[formcontrolname="${formControlName}"]`).click({ force: true })
-      cy.get('.cdk-overlay-container mat-option')
-        .first()
-        .click({ force: true })
-    }
-    
-    // Utilisation :
-    
-    selectFirstOption('testsResults')
     
   // 5. Liste déroulante "Statut"
 cy.xpath(
@@ -43,6 +32,7 @@ cy.xpath(
     .contains('Completed')
     .scrollIntoView()
     .click({ force: true });
+  
   
   // 6. Cliquer sur "Save"
   cy.contains('button', 'Save')

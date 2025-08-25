@@ -1,17 +1,17 @@
-describe('MARINE update Workflow', () => {
+describe('Ordering & Provisioning Workflow', () => {
     before(() => {
       cy.loginAndSearch();
     });
   
-    it('Passe à MARINE update', () => {
+    it('Passe à Ordering & Provisioning', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
-    
-      // Cliquer sur "MARINE update"
-      cy.contains('span', 'MARINE update', { timeout: 10000 })
+      cy.get('#headingLD-0328', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
+
+      // Cliquer sur "Front Desk disconnection management"
+      cy.contains('span', 'Ordering & Provisioning', { timeout: 10000 })
         .should('be.visible')
         .click();
     

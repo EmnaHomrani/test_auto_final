@@ -5,10 +5,10 @@ describe('Tests with / by customer Workflow', () => {
   
     it('Passe à Tests with / by customer', () => {
       // Cliquer sur "Product Id"
-      cy.contains('div', 'Product Id', { timeout: 15000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+      cy.get('#headingLD-0328', { timeout: 15000 })
+      .scrollIntoView()
+      .should('be.visible')
+      .click({ force: true });
     
       // Cliquer sur "Front Desk disconnection management"
       cy.contains('span', 'Tests with / by customer', { timeout: 10000 })

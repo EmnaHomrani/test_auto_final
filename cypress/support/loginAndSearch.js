@@ -85,7 +85,7 @@ Cypress.Commands.add('loginAndSearch', () => {
  });
 
   // Saisie automatique du numéro d'ordre
-  const orderNumber = 'Order EE-10065';
+  const orderNumber = 'Order EE-30005';
   cy.get('#mat-input-0', { timeout: 20000 })
     .should('be.visible')
     .clear()
